@@ -10,6 +10,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
@@ -24,15 +27,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Populate data
-        mImageList.add("ASDASDASd");
+        mImageList.add("https://pbs.twimg.com/profile_images/616076655547682816/6gMRtQyY.jpg");
+        mImageList.add("https://pbs.twimg.com/profile_images/616076655547682816/6gMRtQyY.jpg");
+        mImageList.add("https://pbs.twimg.com/profile_images/616076655547682816/6gMRtQyY.jpg");
+        mImageList.add("https://pbs.twimg.com/profile_images/616076655547682816/6gMRtQyY.jpg");
+
+        //Library init
+        if (!ImageLoader.getInstance().isInited())
+            ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(MainActivity.this));
+
         //Find UI
         GridView gridView = (GridView) findViewById(R.id.activity_main_gallery_grid);
         if (gridView != null) {
             //Set the grid Adapter
             gridView.setAdapter(grid_adapter);
         }
-
-
     }
 
 
@@ -74,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
             holder = convertView;
 
             //Set image
+            ImageView imageView = (ImageView) holder.findViewById(R.id.grid_item_image);
+
+            String uri = (String) getItem(position);
+            if (uri != null)
+                ImageLoader.getInstance().displayImage(uri, imageView);
 
             return convertView;
         }
