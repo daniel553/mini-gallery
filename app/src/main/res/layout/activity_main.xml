@@ -9,8 +9,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.daniel.minigallery.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <GridView
+            android:id="@+id/activity_main_gallery_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numColumns="auto_fit"
+            android:padding="3dp" />
+    </ScrollView>
 </RelativeLayout>
